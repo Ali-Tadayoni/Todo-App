@@ -19,7 +19,7 @@ const Clock: React.FC = () => {
     return () => clearInterval(intervalId); // Cleanup on component unmount
   }, []);
 
-  return <Typography variant="subtitle1">{time}</Typography>;
+  return <Typography sx={{ fontSize: 25 }}>{time}</Typography>;
 };
 
 export default Clock;

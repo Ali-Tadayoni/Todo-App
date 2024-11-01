@@ -10,8 +10,9 @@ const Input: React.FC<InputProps> = ({ onSetState, type }: InputProps) => {
   };
 
   return (
-    <Box sx={{ pt: 4, "& > :not(style)": { m: 1, width: "25ch" } }}>
+    <Box sx={{ pt: 2, width: "100%" }}>
       <TextField
+        sx={{ width: "100%" }}
         id="outlined-basic"
         label={type ? "Estimate" : "Name"}
         variant="outlined"

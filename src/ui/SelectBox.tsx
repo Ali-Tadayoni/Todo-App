@@ -15,7 +15,7 @@ export default function SelectBox({ priority, onSetPriority }: SelectBoxProps) {
   };
 
   return (
-    <Box sx={{ minWidth: 120, pt: 4 }}>
+    <Box sx={{ minWidth: "100%", pt: 2, pb: 2 }}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Priority</InputLabel>
         <Select

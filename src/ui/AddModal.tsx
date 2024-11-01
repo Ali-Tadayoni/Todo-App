@@ -37,7 +37,7 @@ export default function AddModal() {
       id: todos.length + 1,
       title: title,
       priority: priority as Priority,
-      createdAt: formatDate(new Date()),
+      createdAt: formatDate(new Date(), "todo"),
       estimate: estimate ? estimate : "0",
       status: Status.TODO,
       hash: generateRandomHash(),
@@ -57,15 +57,20 @@ export default function AddModal() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Add Todo
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            textAlign="center"
+          >
+            Add a new Todo to your day 😎
           </Typography>
           <form onSubmit={handleSubmit}>
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center",
+                alignItems: "flex-start",
               }}
             >
               <Input onSetState={setTitle} />
@@ -73,8 +78,8 @@ export default function AddModal() {
               <SelectBox priority={priority} onSetPriority={setPriority} />
             </Box>
 
-            <Button type="submit" variant="contained">
-              Submit
+            <Button type="submit" variant="contained" fullWidth>
+              Add Todo
             </Button>
           </form>
         </Box>

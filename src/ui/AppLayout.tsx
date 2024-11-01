@@ -1,13 +1,16 @@
-import { Container, Typography } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import React from "react";
 import Header from "./Header";
 import BasicTable from "./Table";
+import Chart from "./Chart";
 
 const AppLayout: React.FC = () => {
   return (
     <Container sx={{ height: "100vh" }}>
       <Header />
-      <Typography sx={{ mt: 10, textAlign: "center" }}>Chart</Typography>
+      <Box sx={{ mt: 1, mb: 1 }}>
+        <Chart />
+      </Box>
       <BasicTable />
     </Container>
   );
