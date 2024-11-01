@@ -1,8 +1,9 @@
 import { Box } from "@mui/system";
-import AddIcon from "@mui/icons-material/Add";
-import { Fab, Typography } from "@mui/material";
+
+import { Typography } from "@mui/material";
 import Clock from "./Clock";
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
+import AddTodo from "./AddTodo";
 
 const Header: React.FC = () => {
   return (
@@ -14,9 +15,7 @@ const Header: React.FC = () => {
         justifyContent: "space-between",
       }}
     >
-      <Fab color="primary" aria-label="add">
-        <AddIcon />
-      </Fab>
+      <AddTodo />
 
       <Box
         sx={{
