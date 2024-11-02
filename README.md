@@ -1,50 +1,53 @@
-# React + TypeScript + Vite
+# Todo List App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A feature-rich todo list app developed with TypeScript and React, showcasing tasks with various details and statuses.
 
-Currently, two official plugins are available:
+## [Live Demo](https://todo-list-task-website.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### note
 
-## Expanding the ESLint configuration
+"This project is currently a work in progress, and this demo reflects its incomplete state. I am actively working on it, and it will be fully feature-complete as soon as possible😎.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features:
 
-- Configure the top-level `parserOptions` property like this:
+- Add, Edit, and Delete Tasks,secure process for deletion with hash validation.
+- Track Task Status: Organize tasks by their status
+- Priority and Time Management: Set task priority (LOW, MEDIUM, HIGH), estimated time, and date/time of task creation.
+- Statistics and Chart Overview: View a summary chart displaying task distribution by status.
+- Search, Filter, and Sort Options: Quickly find and organize tasks by title, priority, estimate, or status.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Technologies Used:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- React for building the user interface
+- TypeScript for enhanced code structure and type safety
+- Material UI for styling and layout
+- Highcharts for data visualization in task statistics
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Installation:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+You can also run the project locally in your computer, just follow steps below
+
+1. Clone the repository:
+
+   ```
+   git clone https://github.com/Ali-Tadayoni/Todo-App
+   ```
+
+2. Install dependencies:
+
+   ```
+   npm install
+   ```
+
+3. Start the development server:
+   ```
+   npm run dev
+   ```
+
+### Project Status:
+
+This project is not complete and i am strongly working on it to add new features 💪.
+
+### Contact:
+
+For any inquiries, feel free to reach out to me at [Tadayoni.Ali.Enayat@gmail.com](mailto:Tadayoni.Ali.Enayat@gmail.com).
