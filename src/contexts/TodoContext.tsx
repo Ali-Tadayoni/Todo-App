@@ -34,7 +34,6 @@ type Todo = {
   hash: string;
 };
 
-// Define the shape of the state
 interface State {
   todos: Todo[];
 }
@@ -48,7 +47,6 @@ const initialState: State = {
   todos: [],
 };
 
-// Create the context with a typed initial value of undefined to be set by the provider
 const TodoContext = createContext<
   { todos: Todo[]; dispatch: Dispatch<Action> } | undefined
 >(undefined);
@@ -72,14 +70,13 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-// Define the props for the provider
 interface TodoProviderProps {
   children: ReactNode;
 }
 
 function TodoProvider({ children }: TodoProviderProps) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { todos } = state; // Destructure todos from the state
+  const { todos } = state;
 
   return (
     <TodoContext.Provider value={{ todos, dispatch }}>
