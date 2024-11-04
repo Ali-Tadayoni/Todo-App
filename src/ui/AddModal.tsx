@@ -42,13 +42,13 @@ export default function AddModal({ edit, onEdit, editedId }: AddModalProps) {
   };
   const handleClose = () => {
     if (onEdit) onEdit(false);
-    // setOpen(false)
+    setOpen(false);
   };
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     const formattedEstimate = estimate ? formatEstimate(Number(estimate)) : "0";
+    e.preventDefault();
     if (edit && editedId !== undefined) {
-      e.preventDefault();
       if (onEdit) onEdit(false);
 
       dispatch({
@@ -64,7 +64,6 @@ export default function AddModal({ edit, onEdit, editedId }: AddModalProps) {
       });
     } else {
       setOpen(false);
-      e.preventDefault();
       const todo = {
         id: todos.length + 1,
         title: title,
