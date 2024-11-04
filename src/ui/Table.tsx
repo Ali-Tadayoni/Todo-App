@@ -6,9 +6,12 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Priority, Status, useTodo } from "../contexts/TodoContext";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import StatusDialog from "./StatusDialog";
+import { AlertDialog } from "./DeleteTodo";
 
 function createData(
   title: string,
@@ -16,15 +19,18 @@ function createData(
   createdAt: string,
   estimate: string,
   status: Status,
-  id: number
+  id: number,
+  hash: string
 ) {
-  return { title, priority, createdAt, estimate, status, id };
+  return { title, priority, createdAt, estimate, status, id, hash };
 }
 
 export default function BasicTable() {
   const [isOpenDialog, setIsOpenDialog] = useState(false);
   const [todoID, setTodoId] = useState<number>();
   const { todos, dispatch } = useTodo();
+  const [isOpenDelete, setIsOpenDelete] = useState(false);
+  const deleteHashRef = useRef<string | null>(null);
 
   const handleClickOpen = (id: number) => {
     setIsOpenDialog(true);
@@ -40,6 +46,16 @@ export default function BasicTable() {
         payload: [todoID, value as Status],
       });
   };
+
+  const handleClickDeleteIcon = (id: number, hash: string) => {
+    deleteHashRef.current = hash;
+    setTodoId(id);
+    setIsOpenDelete(true);
+  };
+  const handleDeleteTodo = (id: number) => {
+    dispatch({ type: "delete", payload: id });
+    setIsOpenDelete(false);
+  };
   const rows = todos.map((todo) =>
     createData(
       todo.title,
@@ -47,7 +63,8 @@ export default function BasicTable() {
       todo.createdAt,
       todo.estimate,
       todo.status,
-      todo.id
+      todo.id,
+      todo.hash
     )
   );
   return (
@@ -77,6 +94,25 @@ export default function BasicTable() {
                 <TableCell align="right">{row.createdAt}</TableCell>
                 <TableCell align="right">{row.estimate}</TableCell>
                 <TableCell align="right">{row.status}</TableCell>
+                <TableCell align="right">
+                  {
+                    <>
+                      <EditIcon
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          console.log("Edit clicked");
+                        }}
+                      />
+
+                      <DeleteIcon
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          handleClickDeleteIcon(row.id, row.hash);
+                        }}
+                      />
+                    </>
+                  }
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -84,6 +120,15 @@ export default function BasicTable() {
       </TableContainer>
       {isOpenDialog && (
         <StatusDialog open={isOpenDialog} onClose={handleClose} />
+      )}
+      {isOpenDelete && (
+        <AlertDialog
+          open={isOpenDelete}
+          onDelete={handleDeleteTodo}
+          deleteHash={deleteHashRef.current}
+          onClose={setIsOpenDelete}
+          id={todoID}
+        />
       )}
     </>
   );
