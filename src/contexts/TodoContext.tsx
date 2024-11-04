@@ -15,12 +15,12 @@ export enum Priority {
 }
 
 export enum Status {
-  TODO = "TODO",
-  DOING = "DOING",
-  DONE = "DONE",
-  WARNING = "WARNING",
-  PENDING = "PENDING",
-  FAILED = "FAILED",
+  TODO = "Todo",
+  DOING = "Doing",
+  DONE = "Done",
+  WARNING = "Warning",
+  PENDING = "Pending",
+  FAILED = "Failed",
 }
 
 // Define a type for Todo items
@@ -41,7 +41,8 @@ interface State {
 // Define action types and payloads
 type Action =
   | { type: "create"; payload: Todo }
-  | { type: "delete"; payload: number };
+  | { type: "delete"; payload: number }
+  | { type: "changeStatus"; payload: [number, Status] };
 
 const initialState: State = {
   todos: [],
@@ -57,6 +58,16 @@ function reducer(state: State, action: Action): State {
       return {
         ...state,
         todos: [...state.todos, action.payload],
+      };
+
+    case "changeStatus":
+      return {
+        ...state,
+        todos: state.todos.map((todo) =>
+          todo.id === action.payload[0]
+            ? { ...todo, status: action.payload[1] }
+            : todo
+        ),
       };
 
     case "delete":
