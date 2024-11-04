@@ -8,7 +8,7 @@ const AppLayout: React.FC = () => {
   return (
     <Container sx={{ height: "100vh" }}>
       <Header />
-      <Box sx={{ mt: 1, mb: 1 }}>
+      <Box>
         <Chart />
       </Box>
       <BasicTable />

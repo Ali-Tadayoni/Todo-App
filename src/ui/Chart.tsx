@@ -32,12 +32,13 @@ const Chart: React.FC = () => {
       plotBorderWidth: 0,
       plotShadow: false,
       type: "pie",
+      height: 315,
     },
     title: {
       text: `Status<br>${getFormattedDate()}`,
       align: "center",
       verticalAlign: "middle",
-      y: 60,
+      y: 30,
       style: {
         fontSize: "1.1em",
       },
@@ -62,7 +63,7 @@ const Chart: React.FC = () => {
         },
         startAngle: -90,
         endAngle: 90,
-        center: ["50%", "75%"],
+        center: ["50%", "65%"],
         size: "110%",
       },
     },
@@ -70,7 +71,7 @@ const Chart: React.FC = () => {
       {
         type: "pie",
         name: "Status share",
-        innerSize: "50%",
+        innerSize: "53%",
         data: chartData,
       },
     ],
