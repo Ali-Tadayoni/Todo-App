@@ -25,3 +25,15 @@ export function generateRandomHash() {
 
   return result;
 }
+
+export function formatEstimate(estimate: number): string {
+  if (estimate < 8) {
+    return `${estimate}h`;
+  } else if (estimate < 40) {
+    return `${Math.floor(estimate / 8)}d`;
+  } else if (estimate < 160) {
+    return `${Math.floor(estimate / 40)}w`;
+  } else {
+    return `${Math.floor(estimate / 160)}m`;
+  }
+}

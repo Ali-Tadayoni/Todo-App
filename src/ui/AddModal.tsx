@@ -7,7 +7,11 @@ import AddIcon from "@mui/icons-material/Add";
 import SelectBox from "./SelectBox";
 import Input from "./Input";
 import { Priority, Status, useTodo } from "../contexts/TodoContext";
-import { formatDate, generateRandomHash } from "../utils/helpers";
+import {
+  formatDate,
+  generateRandomHash,
+  formatEstimate,
+} from "../utils/helpers";
 
 const style = {
   position: "absolute",
@@ -42,6 +46,7 @@ export default function AddModal({ edit, onEdit, editedId }: AddModalProps) {
   };
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    const formattedEstimate = estimate ? formatEstimate(Number(estimate)) : "0";
     if (edit && editedId !== undefined) {
       e.preventDefault();
       if (onEdit) onEdit(false);
@@ -52,7 +57,7 @@ export default function AddModal({ edit, onEdit, editedId }: AddModalProps) {
           editedId,
           {
             title: title,
-            estimate: estimate || "8",
+            estimate: formattedEstimate,
             priority: priority as Priority,
           },
         ],
@@ -65,7 +70,7 @@ export default function AddModal({ edit, onEdit, editedId }: AddModalProps) {
         title: title,
         priority: priority as Priority,
         createdAt: formatDate(new Date(), "todo"),
-        estimate: estimate ? estimate : "0",
+        estimate: formattedEstimate,
         status: Status.TODO,
         hash: generateRandomHash(),
       };
