@@ -4,6 +4,7 @@ import {
   useReducer,
   ReactNode,
   Dispatch,
+  useEffect,
 } from "react";
 
 // Types
@@ -52,7 +53,7 @@ type Action =
     };
 
 const initialState: State = {
-  todos: [],
+  todos: JSON.parse(localStorage.getItem("todos") || "[]"),
 };
 
 const TodoContext = createContext<
@@ -112,6 +113,9 @@ interface TodoProviderProps {
 function TodoProvider({ children }: TodoProviderProps) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { todos } = state;
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   return (
     <TodoContext.Provider value={{ todos, dispatch }}>

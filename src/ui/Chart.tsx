@@ -1,5 +1,6 @@
 import * as Highcharts from "highcharts";
 import { HighchartsReact } from "highcharts-react-official";
+import { useTodo } from "../contexts/TodoContext";
 
 function getFormattedDate(): string {
   const date = new Date();
@@ -10,65 +11,71 @@ function getFormattedDate(): string {
   }).format(date);
 }
 
-const options: Highcharts.Options = {
-  chart: {
-    plotBackgroundColor: undefined,
-    plotBorderWidth: 0,
-    plotShadow: false,
-    type: "pie",
-  },
-  title: {
-    text: `Status<br>${getFormattedDate()}`,
-    align: "center",
-    verticalAlign: "middle",
-    y: 60,
-    style: {
-      fontSize: "1.1em",
-    },
-  },
-  tooltip: {
-    pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>",
-  },
-  accessibility: {
-    point: {
-      valueSuffix: "%",
-    },
-  },
-  plotOptions: {
-    pie: {
-      dataLabels: {
-        enabled: true,
-        distance: -50,
-        style: {
-          fontWeight: "bold",
-          color: "white",
-        },
-      },
-      startAngle: -90,
-      endAngle: 90,
-      center: ["50%", "75%"],
-      size: "110%",
-    },
-  },
-  series: [
-    {
-      type: "pie",
-      name: "Browser share",
-      innerSize: "50%",
-      data: [
-        ["Chrome", 73.86],
-        ["Edge", 11.97],
-        ["Firefox", 5.52],
-        ["Safari", 2.98],
-        ["Internet Explorer", 1.9],
-        ["Other", 3.77],
-      ],
-    },
-  ],
-};
-
 const Chart: React.FC = () => {
+  const { todos } = useTodo();
+  // Count the statuses
+  const statusCounts = todos.reduce((acc, todo) => {
+    acc[todo.status] = (acc[todo.status] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+
+  // Calculate the percentages for each status
+  const totalTodos = todos.length;
+  const chartData = Object.entries(statusCounts).map(([status, count]) => [
+    status,
+    (count / totalTodos) * 100,
+  ]);
+
+  const options: Highcharts.Options = {
+    chart: {
+      plotBackgroundColor: undefined,
+      plotBorderWidth: 0,
+      plotShadow: false,
+      type: "pie",
+    },
+    title: {
+      text: `Status<br>${getFormattedDate()}`,
+      align: "center",
+      verticalAlign: "middle",
+      y: 60,
+      style: {
+        fontSize: "1.1em",
+      },
+    },
+    tooltip: {
+      pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>",
+    },
+    accessibility: {
+      point: {
+        valueSuffix: "%",
+      },
+    },
+    plotOptions: {
+      pie: {
+        dataLabels: {
+          enabled: true,
+          distance: -50,
+          style: {
+            fontWeight: "bold",
+            color: "white",
+          },
+        },
+        startAngle: -90,
+        endAngle: 90,
+        center: ["50%", "75%"],
+        size: "110%",
+      },
+    },
+    series: [
+      {
+        type: "pie",
+        name: "Status share",
+        innerSize: "50%",
+        data: chartData,
+      },
+    ],
+  };
+
   return <HighchartsReact highcharts={Highcharts} options={options} />;
 };
-
 export default Chart;
