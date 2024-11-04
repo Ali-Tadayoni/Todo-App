@@ -12,6 +12,7 @@ const Input: React.FC<InputProps> = ({ onSetState, type }: InputProps) => {
   return (
     <Box sx={{ pt: 2, width: "100%" }}>
       <TextField
+        required
         sx={{ width: "100%" }}
         id="outlined-basic"
         label={type ? "Estimate" : "Name"}

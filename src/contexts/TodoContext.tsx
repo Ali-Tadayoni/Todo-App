@@ -42,7 +42,14 @@ interface State {
 type Action =
   | { type: "create"; payload: Todo }
   | { type: "delete"; payload: number }
-  | { type: "changeStatus"; payload: [number, Status] };
+  | { type: "changeStatus"; payload: [number, Status] }
+  | {
+      type: "edit";
+      payload: [
+        number,
+        { title: string; estimate: string; priority: Priority }
+      ];
+    };
 
 const initialState: State = {
   todos: [],
@@ -70,6 +77,23 @@ function reducer(state: State, action: Action): State {
         ),
       };
 
+    case "edit": {
+      const [id, updates] = action.payload;
+
+      return {
+        ...state,
+        todos: state.todos.map((todo) =>
+          todo.id === id
+            ? {
+                ...todo,
+                title: updates.title,
+                estimate: updates.estimate,
+                priority: updates.priority,
+              }
+            : todo
+        ),
+      };
+    }
     case "delete":
       return {
         ...state,

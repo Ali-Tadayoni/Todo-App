@@ -19,6 +19,7 @@ export default function SelectBox({ priority, onSetPriority }: SelectBoxProps) {
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Priority</InputLabel>
         <Select
+          required
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={priority}

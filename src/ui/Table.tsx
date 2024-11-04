@@ -12,6 +12,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 import StatusDialog from "./StatusDialog";
 import { AlertDialog } from "./DeleteTodo";
+import AddModal from "./AddModal";
 
 function createData(
   title: string,
@@ -30,6 +31,7 @@ export default function BasicTable() {
   const [todoID, setTodoId] = useState<number>();
   const { todos, dispatch } = useTodo();
   const [isOpenDelete, setIsOpenDelete] = useState(false);
+  const [isEditSession, setIsEditSession] = useState(false);
   const deleteHashRef = useRef<string | null>(null);
 
   const handleClickOpen = (id: number) => {
@@ -55,6 +57,10 @@ export default function BasicTable() {
   const handleDeleteTodo = (id: number) => {
     dispatch({ type: "delete", payload: id });
     setIsOpenDelete(false);
+  };
+  const handleEditSession = (id: number) => {
+    setIsEditSession(true);
+    setTodoId(id);
   };
   const rows = todos.map((todo) =>
     createData(
@@ -100,7 +106,7 @@ export default function BasicTable() {
                       <EditIcon
                         onClick={(event) => {
                           event.stopPropagation();
-                          console.log("Edit clicked");
+                          handleEditSession(row.id);
                         }}
                       />
 
@@ -128,6 +134,13 @@ export default function BasicTable() {
           deleteHash={deleteHashRef.current}
           onClose={setIsOpenDelete}
           id={todoID}
+        />
+      )}
+      {isEditSession && (
+        <AddModal
+          edit={isEditSession}
+          onEdit={setIsEditSession}
+          editedId={todoID}
         />
       )}
     </>
