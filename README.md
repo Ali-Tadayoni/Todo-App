@@ -4,10 +4,6 @@ A feature-rich todo list app developed with TypeScript and React, showcasing tas
 
 ## [Live Demo](https://todo-list-task-website.netlify.app/)
 
-### note
-
-"This project is currently a work in progress, and this demo reflects its incomplete state. I am actively working on it, and it will be fully feature-complete as soon as possible😎.
-
 ## Features:
 
 - Add, Edit, and Delete Tasks,secure process for deletion with hash validation.
@@ -46,7 +42,7 @@ You can also run the project locally in your computer, just follow steps below
 
 ### Project Status:
 
-This project is not complete and i am strongly working on it to add new features 💪.
+This project is currently complete but i will still work on iy and add new features 😎💪
 
 ### Contact:
 
