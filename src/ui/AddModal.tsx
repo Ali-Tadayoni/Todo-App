@@ -12,6 +12,7 @@ import {
   generateRandomHash,
   formatEstimate,
 } from "../utils/helpers";
+import Notification from "./Notification";
 
 const style = {
   position: "absolute",
@@ -36,6 +37,7 @@ export default function AddModal({ edit, onEdit, editedId }: AddModalProps) {
   const [priority, setPriority] = React.useState<string>("");
   const [estimate, setEstimate] = React.useState<string>();
   const [open, setOpen] = React.useState(false);
+  const [message, setMessage] = React.useState("");
   const { dispatch, todos } = useTodo();
   const handleOpen = () => {
     if (!edit) setOpen(true);
@@ -64,6 +66,9 @@ export default function AddModal({ edit, onEdit, editedId }: AddModalProps) {
       });
     } else {
       setOpen(false);
+      setMessage("Task created successfully!");
+
+      setTimeout(() => setMessage(""), 2000);
       const todo = {
         id: todos.length + 1,
         title: title,
@@ -79,6 +84,7 @@ export default function AddModal({ edit, onEdit, editedId }: AddModalProps) {
 
   return (
     <div>
+      {message && <Notification message={message} />}
       {!edit && (
         <Fab color="primary" aria-label="add" onClick={handleOpen}>
           <AddIcon />

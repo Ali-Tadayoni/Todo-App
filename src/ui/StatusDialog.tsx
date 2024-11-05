@@ -6,9 +6,9 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
-import TaskAltIcon from "@mui/icons-material/TaskAlt";
+import LightbulbIcon from "@mui/icons-material/Lightbulb";
 
-import { blue } from "@mui/material/colors";
+import { yellow } from "@mui/material/colors";
 
 const status = ["Todo", "Doing", "Done", "Warning", "Pending", "Failed"];
 
@@ -34,8 +34,8 @@ function StatusDialog({ onClose, open }: SimpleDialogProps) {
           <ListItem disableGutters key={sta}>
             <ListItemButton onClick={() => handleListItemClick(sta)}>
               <ListItemAvatar>
-                <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
-                  <TaskAltIcon />
+                <Avatar sx={{ bgcolor: yellow[100], color: yellow[600] }}>
+                  <LightbulbIcon />
                 </Avatar>
               </ListItemAvatar>
               <ListItemText primary={sta} />

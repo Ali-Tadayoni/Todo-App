@@ -23,6 +23,7 @@ function AlertDialog({
   id,
 }: AlertDialogProps) {
   const [isHashCheckOpen, setIsHashCheckOpen] = useState(false);
+
   const handleClose = () => {
     onClose(false);
   };
@@ -97,7 +98,7 @@ function HashCheck({
       onDelete(id);
       handleClose();
     } else {
-      setError(true); // Show error message
+      setError(true);
     }
   };
 
@@ -118,9 +119,9 @@ function HashCheck({
           value={input}
           onChange={(e) => {
             setInput(e.target.value);
-            if (error) setError(false); // Reset error when input changes
+            if (error) setError(false);
           }}
-          error={error} // Show red outline when error is true
+          error={error}
           helperText={error ? "Incorrect hash. Please try again." : ""}
         />
       </DialogContent>
