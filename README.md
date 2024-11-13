@@ -6,7 +6,7 @@ A feature-rich todo list app developed with TypeScript and React, showcasing tas
 
 ## Features:
 
-- Add, Edit, and Delete Tasks,secure process for deletion with hash validation
+- Add, Edit, and Delete Tasks,secure process for deletion with hash validation.
 - Track Task Status: Organize tasks by their status
 - Priority and Time Management: Set task priority (LOW, MEDIUM, HIGH), estimated time, and date/time of task creation.
 - Statistics and Chart Overview: View a summary chart displaying task distribution by status.
