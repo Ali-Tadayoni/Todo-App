@@ -42,7 +42,7 @@ You can also run the project locally in your computer, just follow steps below
 
 ### Project Status:
 
-This project is currently complete but i will still work on iy and add new features. 😎💪
+This project is currently complete but i will still work on iy and add new features.
 
 ### Contact:
 
